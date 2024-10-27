@@ -1,0 +1,32 @@
+{
+  "users": [
+    {
+      "id": "dfa1",
+      "name": "dd",
+      "email": "d@gmail.com",
+      "password": "dd"
+    }
+  ],
+  "students": [
+    {
+      "id": "25f3",
+      "name": "monther",
+      "age": 26
+    },
+    {
+      "id": "5cb5",
+      "name": "hamza",
+      "age": 35
+    },
+    {
+      "id": "14d1",
+      "name": "ahmed",
+      "age": 34
+    },
+    {
+      "id": "7953",
+      "name": "taib",
+      "age": 32
+    }
+  ]
+}

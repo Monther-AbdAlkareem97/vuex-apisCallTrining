@@ -1,26 +1,78 @@
 import { createStore } from 'vuex'
+import axios from 'axios'
 
 export default createStore({
   state: {
-    products: "",
-  },
-  getters: {
+    students: [],
+    users: []
   },
   mutations: {
-    setProducts(state, products) {
-      state.products = products;
-      console.log(products)
-    }
+    setUser(state, userData) {
+      state.users = userData
+    },
+    addUser(state, newUser) {
+      state.users.push(newUser)
+    },
+    setStudent(state, studentData) {
+      state.students = studentData;
+    },
+    addStudent(state, newStudent) {
+      state.students.push(newStudent);
+    },
+    UPDATE_STUDENT(state, updatedStudent) {
+      const index = state.students.findIndex(student => student.id === updatedStudent.id);
+      if (index !== -1) {
+        state.students.splice(index, 1, updatedStudent);
+      }
+    },
+    REMOVE_STUDENT(state, studentId) {
+      const index = state.students.findIndex(student => student.id === studentId);
+      if (index !== -1) {
+        state.students.splice(index, 1);
+      }
+    },
   },
   actions: {
-    async doGetProducts (context){
-      await fetch("https://dummyjson.com/products")
-      .then(response => response.json())
-      .then((data) => {
-        context.commit('setProducts', data.products)
-      })
+    async fetchStudentData({ commit }) {
+      try {
+        const response = await axios.get('http://localhost:3000/students');
+        commit('setStudent', response.data);
+      } catch (error) {
+        console.log('Error fetching student data:', error);
+      }
+    },
+    async createStudent({ commit }, studentData) {
+      try {
+        const response = await axios.post('http://localhost:3000/students', studentData);
+        commit('addStudent', response.data);
+      } catch (error) {
+        console.error('Error creating student:', error);
+      }
+    },
+    async updateStudent({ commit }, updatedStudent) {
+      try {
+        const response = await axios.put(`http://localhost:3000/students/${updatedStudent.id}`, updatedStudent);
+        commit('UPDATE_STUDENT', response.data);
+      } catch (error) {
+        console.error('Error updating student:', error);
+      }
+    },
+    async deleteStudentById({ commit }, studentId) {
+      try {
+        await axios.delete(`http://localhost:3000/students/${studentId}`);
+        commit('REMOVE_STUDENT', studentId);
+      } catch (error) {
+        console.error('Error deleting student:', error);
+      }
+    },
+    async signUpUser({ commit }, signUpInfo) {
+      try {
+        const response = await axios.post('http://localhost:3000/users', signUpInfo);
+        commit('addUser', response.data);
+      } catch (error) {
+        console.error('Error signing up user:', error);
+      }
     }
-  },
-  modules: {
   }
-})
+}
+);
