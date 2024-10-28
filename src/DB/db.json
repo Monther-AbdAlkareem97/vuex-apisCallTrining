@@ -5,7 +5,14 @@
       "name": "admin",
       "email": "admin@gmail.com",
       "password": "admin",
-      "loggedIn": true
+      "loggedIn": false
+    },
+    {
+      "id": "2e4e",
+      "name": "monther",
+      "email": "monther@gmail.com",
+      "password": "monther",
+      "loggedIn": false
     }
   ],
   "students": [

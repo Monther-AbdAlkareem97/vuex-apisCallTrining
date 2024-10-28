@@ -41,12 +41,12 @@ router.beforeEach(async (to, from, next) => {
   if (to.meta.requiresAuth) {
     try {
       const response = await axios.get('http://localhost:3000/users'); // Adjust to your JSON server endpoint
-      const admin = response.data.find(user => user.name === 'admin' && user.loggedIn);
+      const loggedInUser = response.data.find(user => user.loggedIn); // Check for any logged-in user
 
-      if (admin) {
-        next(); // Admin is logged in, allow access
+      if (loggedInUser) {
+        next(); // At least one user is logged in, allow access
       } else {
-        next({ name: 'login' }); // Redirect to login if not logged in
+        next({ name: 'login' }); // Redirect to login if no user is logged in
       }
     } catch (error) {
       console.error('Error verifying login:', error);

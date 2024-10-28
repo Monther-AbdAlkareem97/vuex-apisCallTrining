@@ -100,18 +100,20 @@ export default createStore({
     },
     async logoutUser({ commit }) {
       try {
+        // Fetch all users to identify the currently logged-in user
         const response = await axios.get('http://localhost:3000/users');
-        const admin = response.data.find(user => user.name === 'admin');
+        const loggedInUser = response.data.find(user => user.loggedIn); // Find the user who is logged in
 
-        if (admin) {
-          // Update loggedIn status to false on JSON server
-          await axios.patch(`http://localhost:3000/users/${admin.id}`, { loggedIn: false });
+        if (loggedInUser) {
+          // Update loggedIn status to false for this user on JSON server
+          await axios.patch(`http://localhost:3000/users/${loggedInUser.id}`, { loggedIn: false });
           commit('setLoggedIn', false); // Update Vuex state
         }
       } catch (error) {
         console.error('Error logging out user:', error);
       }
     }
+
   },
   getters: {
     isAuthenticated: state => state.loggedIn
