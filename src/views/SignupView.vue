@@ -2,16 +2,17 @@
     <div>
         <h1>Signup</h1>
         <form @submit.prevent="submitForm">
-            <input type="text" v-model="name" placeholder="Enter your name">
-            <input type="email" v-model="email" placeholder="Enter your email">
-            <input type="text" v-model="password" placeholder="Enter your Password">
+            <input type="text" v-model="name" placeholder="Enter your name" required>
+            <input type="email" v-model="email" placeholder="Enter your email" required>
+            <input type="text" v-model="password" placeholder="Enter your Password" required>
             <button type="submit">Signup</button>
+            <a href="#">Login</a>
         </form>
     </div>
 </template>
 
 <script>
-import { mapState , mapActions } from 'vuex';
+import { mapState, mapActions } from 'vuex';
 export default {
     data() {
         return {
