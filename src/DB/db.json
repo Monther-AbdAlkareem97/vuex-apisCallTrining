@@ -1,18 +1,6 @@
 {
-  "users": [
-    {
-      "id": "dfa1",
-      "name": "dd",
-      "email": "d@gmail.com",
-      "password": "dd"
-    }
-  ],
+  "users": [],
   "students": [
-    {
-      "id": "25f3",
-      "name": "monther",
-      "age": 26
-    },
     {
       "id": "5cb5",
       "name": "hamza",
@@ -27,6 +15,11 @@
       "id": "7953",
       "name": "taib",
       "age": 32
+    },
+    {
+      "id": "80a9",
+      "name": "monther",
+      "age": 26
     }
   ]
 }

@@ -1,25 +1,23 @@
 <template>
-  <div class="home">
-
-    <table v-if="students.length > 0">
+  <div class="home p-4">
+    <table v-if="students.length > 0" class="min-w-full bg-white border border-gray-200 rounded-lg shadow-md">
       <thead>
-        <tr>
-          <th>ID</th>
-          <th>Name</th>
-          <th>Age</th>
+        <tr class="bg-gray-100 text-gray-600 uppercase text-sm leading-normal">
+          <th class="py-3 px-6 text-left">ID</th>
+          <th class="py-3 px-6 text-left">Name</th>
+          <th class="py-3 px-6 text-left">Age</th>
         </tr>
       </thead>
-      <tbody>
-        <tr v-for="(student, index) in students" :key="index">
-          <td>{{index + 1}}</td>
-          <td>{{ student.name }}</td>
-          <td>{{ student.age }}</td>
+      <tbody class="text-gray-700 text-sm font-light">
+        <tr v-for="(student, index) in students" :key="index" class="border-b border-gray-200 hover:bg-gray-50">
+          <td class="py-3 px-6 text-left">{{ index + 1 }}</td>
+          <td class="py-3 px-6 text-left">{{ student.name }}</td>
+          <td class="py-3 px-6 text-left">{{ student.age }}</td>
         </tr>
       </tbody>
     </table>
 
-    <p v-else>No student found</p>
-
+    <p v-else class="text-center text-gray-500 mt-4">No student found</p>
   </div>
 </template>
 
@@ -27,39 +25,17 @@
 import { mapState, mapActions } from 'vuex';
 
 export default {
-
   computed: {
-    ...mapState(['students']),     
+    ...mapState(['students']),
   },
   methods: {
-    ...mapActions(['fetchStudentData']), 
+    ...mapActions(['fetchStudentData']),
     async fetchStudents() {
-      await this.fetchStudentData();  
+      await this.fetchStudentData();
     },
   },
   mounted() {
-      this.fetchStudents();   
-    }
+    this.fetchStudents();
+  }
 };
 </script>
-
-<style scoped>
-.popup {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(0, 0, 0, 0.5);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.popup-content {
-  background: white;
-  padding: 20px;
-  border-radius: 8px;
-  width: 300px;
-}
-</style>
