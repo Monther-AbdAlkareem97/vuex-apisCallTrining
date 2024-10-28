@@ -20,6 +20,11 @@ json-server --watch db.json
 ```
 npm run serve
 ```
+### fill login info and enter the project
+```
+email : admin@gmail.com
+password : admin
+ ```
 ### Customize configuration
 See [Configuration Reference](https://cli.vuejs.org/config/).
 # vuex-apisCallTrining
