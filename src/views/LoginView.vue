@@ -36,7 +36,6 @@ export default {
         async handleLogin() {
             const loginSuccess = await this.loginUser({ email: this.email, password: this.password });
             if (loginSuccess) {
-                // Redirect to dashboard if login is successful
                 this.$router.push({ name: 'dashboard' });
             } else {
                 alert('Invalid credentials. Please try again.');

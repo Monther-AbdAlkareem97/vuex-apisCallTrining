@@ -10,13 +10,13 @@ const routes = [
     path: '/home',
     name: 'home',
     component: HomeView,
-    meta: { requiresAuth: true } // Requires authentication
+    meta: { requiresAuth: true } 
   },
   {
     path: '/dashboard',
     name: 'dashboard',
     component: AboutView,
-    meta: { requiresAuth: true } // Requires authentication
+    meta: { requiresAuth: true }
   },
   {
     path: '/login',
@@ -27,7 +27,7 @@ const routes = [
     path: '/signup',
     name: 'signup',
     component: SignupView,
-    meta: { requiresAuth: true } // Requires authentication
+    meta: { requiresAuth: true } 
   }
 ];
 
@@ -36,24 +36,24 @@ const router = createRouter({
   routes
 });
 
-// Navigation guard to check if the user is logged in by verifying with JSON server
+
 router.beforeEach(async (to, from, next) => {
   if (to.meta.requiresAuth) {
     try {
-      const response = await axios.get('http://localhost:3000/users'); // Adjust to your JSON server endpoint
-      const loggedInUser = response.data.find(user => user.loggedIn); // Check for any logged-in user
+      const response = await axios.get('http://localhost:3000/users'); 
+      const loggedInUser = response.data.find(user => user.loggedIn);
 
       if (loggedInUser) {
-        next(); // At least one user is logged in, allow access
+        next(); 
       } else {
-        next({ name: 'login' }); // Redirect to login if no user is logged in
+        next({ name: 'login' }); 
       }
     } catch (error) {
       console.error('Error verifying login:', error);
-      next({ name: 'login' }); // Redirect to login on error
+      next({ name: 'login' });
     }
   } else {
-    next(); // Proceed to the route if no auth required
+    next(); 
   }
 });
 

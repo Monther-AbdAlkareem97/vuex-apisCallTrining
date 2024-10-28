@@ -5,7 +5,7 @@ export default createStore({
   state: {
     students: [],
     users: [],
-    loggedIn: false, // New state to track login status
+    loggedIn: false,
   },
   mutations: {
     setUser(state, userData) {
@@ -81,17 +81,16 @@ export default createStore({
       try {
         const response = await axios.get('http://localhost:3000/users');
         const user = response.data.find(
-          user => user.email === email && user.password === password // Check for email and password
+          user => user.email === email && user.password === password
         );
 
         if (user) {
-          // Set user as logged in on the JSON server
           await axios.patch(`http://localhost:3000/users/${user.id}`, { loggedIn: true });
-          commit('setLoggedIn', true); // Update Vuex state
-          return true; // Success response for handling in component
+          commit('setLoggedIn', true);
+          return true;
         } else {
-          commit('setLoggedIn', false); // No match found
-          return false; // Failure response
+          commit('setLoggedIn', false);
+          return false;
         }
       } catch (error) {
         console.error('Error logging in user:', error);
@@ -100,14 +99,11 @@ export default createStore({
     },
     async logoutUser({ commit }) {
       try {
-        // Fetch all users to identify the currently logged-in user
         const response = await axios.get('http://localhost:3000/users');
-        const loggedInUser = response.data.find(user => user.loggedIn); // Find the user who is logged in
-
+        const loggedInUser = response.data.find(user => user.loggedIn);
         if (loggedInUser) {
-          // Update loggedIn status to false for this user on JSON server
           await axios.patch(`http://localhost:3000/users/${loggedInUser.id}`, { loggedIn: false });
-          commit('setLoggedIn', false); // Update Vuex state
+          commit('setLoggedIn', false);
         }
       } catch (error) {
         console.error('Error logging out user:', error);

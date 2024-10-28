@@ -112,8 +112,8 @@ export default {
       this.showPopup = false;
     },
     async logout() {
-      await this.logoutUser(); // Call the logout action
-      this.$router.push({ name: 'login' }); // Redirect to the login page after logout
+      await this.logoutUser();
+      this.$router.push({ name: 'login' }); 
     }
   },
   mounted() {
@@ -125,17 +125,14 @@ export default {
 <style scoped>
 .dashboard {
   position: relative;
-  /* This will allow absolute positioning of the logout button */
+  
 }
 
 .logout-button {
   position: absolute;
   top: 20px;
-  /* Adjust as needed */
   right: 20px;
-  /* Adjust as needed */
   background-color: #f56565;
-  /* Red background color */
   color: white;
   padding: 8px 16px;
   border: none;
@@ -147,7 +144,6 @@ export default {
 
 .logout-button:hover {
   background-color: #e53e3e;
-  /* Darker red on hover */
 }
 
 .popup {
