@@ -14,7 +14,14 @@ npm run serve
 ```
 npm run build
 ```
-
+## setup json server
+```
+npm install json-server
+```
+## run json server until the project work
+```
+json-server --watch db.json
+```
 ### Customize configuration
 See [Configuration Reference](https://cli.vuejs.org/config/).
 # vuex-apisCallTrining
