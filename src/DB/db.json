@@ -5,13 +5,20 @@
       "name": "admin",
       "email": "admin@gmail.com",
       "password": "admin",
-      "loggedIn": false
+      "loggedIn": true
     },
     {
       "id": "2e4e",
       "name": "monther",
       "email": "monther@gmail.com",
       "password": "monther",
+      "loggedIn": false
+    },
+    {
+      "id": "47e4",
+      "name": "test",
+      "email": "test@gmail.com",
+      "password": "test",
       "loggedIn": false
     }
   ],

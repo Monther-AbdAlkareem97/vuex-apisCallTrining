@@ -42,7 +42,6 @@ router.beforeEach(async (to, from, next) => {
     try {
       const response = await axios.get('http://localhost:3000/users'); 
       const loggedInUser = response.data.find(user => user.loggedIn);
-
       if (loggedInUser) {
         next(); 
       } else {

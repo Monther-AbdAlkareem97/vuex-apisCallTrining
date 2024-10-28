@@ -71,19 +71,20 @@ export default createStore({
     },
     async signUpUser({ commit }, signUpInfo) {
       try {
-        const response = await axios.post('http://localhost:3000/users', signUpInfo);
+        const userData = { ...signUpInfo, loggedIn: false };
+        const response = await axios.post('http://localhost:3000/users', userData);
         commit('addUser', response.data);
       } catch (error) {
         console.error('Error signing up user:', error);
       }
-    },
+    }
+    ,
     async loginUser({ commit }, { email, password }) {
       try {
         const response = await axios.get('http://localhost:3000/users');
         const user = response.data.find(
           user => user.email === email && user.password === password
         );
-
         if (user) {
           await axios.patch(`http://localhost:3000/users/${user.id}`, { loggedIn: true });
           commit('setLoggedIn', true);
