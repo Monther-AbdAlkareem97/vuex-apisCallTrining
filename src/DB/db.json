@@ -1,5 +1,13 @@
 {
-  "users": [],
+  "users": [
+    {
+      "id": "c6c5",
+      "name": "admin",
+      "email": "admin@gmail.com",
+      "password": "admin",
+      "loggedIn": true
+    }
+  ],
   "students": [
     {
       "id": "5cb5",

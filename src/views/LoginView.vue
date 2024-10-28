@@ -1,6 +1,6 @@
 <template>
     <div class="flex items-center justify-center min-h-screen bg-gray-100">
-        <form class="bg-white p-8 rounded-lg shadow-lg w-full max-w-md">
+        <form @submit.prevent="handleLogin" class="bg-white p-8 rounded-lg shadow-lg w-full max-w-md">
             <h2 class="text-2xl font-semibold text-gray-700 mb-6 text-center">Login Page</h2>
 
             <input type="text" v-model="email" placeholder="Enter your email"
@@ -22,11 +22,25 @@
 </template>
 
 <script>
+import { mapActions } from 'vuex';
+
 export default {
     data() {
         return {
             email: '',
             password: '',
+        }
+    },
+    methods: {
+        ...mapActions(['loginUser']),
+        async handleLogin() {
+            const loginSuccess = await this.loginUser({ email: this.email, password: this.password });
+            if (loginSuccess) {
+                // Redirect to dashboard if login is successful
+                this.$router.push({ name: 'dashboard' });
+            } else {
+                alert('Invalid credentials. Please try again.');
+            }
         }
     }
 }
